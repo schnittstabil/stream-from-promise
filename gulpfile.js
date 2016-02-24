@@ -44,20 +44,20 @@ gulp.task('test', function() {
       .pipe(mocha({reporter: 'spec'}));
 });
 
-gulp.task('coverage', function (done) {
-  gulp.src(scripts.concat(['!' + tests]))
+gulp.task('instrument', function() {
+  return gulp.src(scripts.concat(['!' + tests]))
     .pipe(istanbul())
-    .on('finish', function () {
-      /* tests */
-      gulp.src(tests)
-        .pipe(mocha({
-          reporter: 'dot'
-        }))
-        .pipe(istanbul.writeReports({
-          reporters: ['lcovonly', 'text-summary', 'html']
-        }))
-        .on('end', done);
-    });
+    .pipe(istanbul.hookRequire());
+});
+
+gulp.task('coverage', ['instrument'], function() {
+  return gulp.src(tests)
+    .pipe(mocha({
+      reporter: 'dot'
+    }))
+    .pipe(istanbul.writeReports({
+      reporters: ['lcovonly', 'text-summary', 'html']
+    }));
 });
 
 gulp.task('default', ['lint', 'coverage']);
