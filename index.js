@@ -31,7 +31,8 @@ StreamFromPromise.prototype._read = function() {
         self.push(null);
       },
       function(reason) {
-        self.emit('error', new Error('rejected'), reason);
+        var err = reason instanceof Error ? reason : new Error('rejected');
+        self.emit('error', err);
         self.push(null);
       }
     );

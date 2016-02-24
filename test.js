@@ -60,7 +60,7 @@ describe('fromPromise', function() {
     fromPromise(new P(new Error('test 42'), null))
       .on('error', function(err) {
         if (err) {
-          assert.ok((err instanceof Error) && /rejected/.test(err), err);
+          assert.ok((err instanceof Error) && /test 42/.test(err), err);
           done();
         }
       })
