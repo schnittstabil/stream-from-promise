@@ -1,6 +1,6 @@
 {
   "name": "stream-from-promise",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Create streams from promises",
   "repository": {
     "type": "git",

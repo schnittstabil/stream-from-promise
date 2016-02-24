@@ -6,7 +6,9 @@ Create streams from [ECMAScript 2015 Promises](http://www.ecma-international.org
 npm install stream-from-promise --save
 ```
 
+
 ## Usage
+
 
 ### `String | Buffer` promises
 
@@ -33,6 +35,7 @@ StreamFromPromise(bufferPromise)
   .pipe(process.stdout); // output: buff!
 ```
 
+
 ### Arbitrary Promises
 
 ```JavaScript
@@ -51,6 +54,7 @@ StreamFromPromise.obj(funcPromise)
     fn(); // output: func!?!
   });
 ```
+
 
 ### Rejecting
 
@@ -71,6 +75,7 @@ StreamFromPromise(rejectPromise)
     // do something awsome
   });
 ```
+
 
 ### [Gulp](http://gulpjs.com/) File promises
 
@@ -108,11 +113,14 @@ StreamFromPromise.obj(helloFilePromise)
 
 See also [stream-recorder](https://github.com/schnittstabil/stream-recorder) for testing gulp plugins.
 
+
 ## API
+
 
 ### Class: StreamFromPromise
 
 _StreamFromPromises_ are [Readable](http://nodejs.org/api/stream.html#stream_class_stream_readable_1) streams.
+
 
 #### new StreamFromPromise(promise, [options])
 
@@ -121,9 +129,11 @@ _StreamFromPromises_ are [Readable](http://nodejs.org/api/stream.html#stream_cla
 
 Note: The `new` operator can be omitted.
 
+
 #### StreamFromPromise#obj(promise, [options])
 
 A convenience wrapper for `new StreamFromPromise(promise, {objectMode: true, ...})`.
+
 
 ## License
 
