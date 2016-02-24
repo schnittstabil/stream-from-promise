@@ -52,5 +52,5 @@ test('should throw errors on non promise', t => {
 
 test('constructor should return new instance w/o new', t => {
 	const sut = fromPromise.obj(buildPromise());
-	t.same(sut instanceof fromPromise, true);
+	t.ok(sut instanceof fromPromise);
 });

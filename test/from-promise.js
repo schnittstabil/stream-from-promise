@@ -27,10 +27,9 @@ test.cb('with decodeStrings:false should emit string results', t => {
 test.cb('should emit errors', t => {
 	fromPromise(buildPromise(new Error('test 42'), null))
 		.on('error', err => {
-			if (err) {
-				t.ok((err instanceof Error) && /test 42/.test(err), err);
-				t.end();
-			}
+			t.ok(err instanceof Error);
+			t.regex(err, /test 42/);
+			t.end();
 		})
 		.resume();
 });
@@ -42,5 +41,5 @@ test('should throw errors on non promise', t => {
 
 test('constructor should return new instance w/o new', t => {
 	const sut = fromPromise(buildPromise());
-	t.same(sut instanceof fromPromise, true);
+	t.ok(sut instanceof fromPromise);
 });
