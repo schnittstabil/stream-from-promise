@@ -1,3 +1,5 @@
+/*global Promise*/
+
 'use strict';
 var fromPromise = require('./'),
     PromiseA = typeof Promise === 'undefined' ? require('promise') : Promise,
@@ -81,7 +83,7 @@ describe('fromPromise', function() {
 describe('fromPromise.obj', function() {
 
   describe('with string array as value', function() {
-    var input = ['foo', 'bar'];
+    var input = ['foo', 'bar', undefined];
     it('should emit value in object mode', function(done) {
       var opts = {objectMode: true};
       fromPromise(new P(null, input), opts)
@@ -94,18 +96,16 @@ describe('fromPromise.obj', function() {
     });
   });
 
-  [null, undefined].forEach(function(eof) {
-    describe('with value == ' + eof, function() {
-      it('should end stream', function(done) {
-        var opts = {objectMode: true};
-        fromPromise(new P(null, eof), opts)
-          .on('error', done)
-          .pipe(recorder(opts, function(result) {
-            assert.deepEqual(result, []);
-            done();
-          }))
-          .resume();
-      });
+  describe('with value == null', function() {
+    it('should end stream', function(done) {
+      var opts = {objectMode: true};
+      fromPromise(new P(null, null), opts)
+        .on('error', done)
+        .pipe(recorder(opts, function(result) {
+          assert.deepEqual(result, []);
+          done();
+        }))
+        .resume();
     });
   });
 
