@@ -26,3 +26,4 @@ node_modules
 
 .coveralls.yml
 stream-from-promise-*.*.*.tgz
+.nyc_output

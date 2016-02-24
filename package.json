@@ -23,22 +23,22 @@
   },
   "homepage": "https://github.com/schnittstabil/stream-from-promise",
   "engines": {
-    "node": "^0.11 || ^0.10"
+    "node": ">=0.10.0"
   },
   "main": "index.js",
   "files": [
     "index.js"
   ],
   "scripts": {
-    "test": "xo && ./node_modules/gulp/bin/gulp.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "xo && nyc ava"
   },
   "devDependencies": {
+    "ava": "^0.12.0",
     "coveralls": "^2.11.6",
     "gulp": "^3.9.1",
-    "gulp-istanbul": "^0.10.3",
-    "gulp-mocha": "^2.2.0",
     "merge-stream": "^1.0.0",
-    "promise": "^7.1.1",
+    "nyc": "^5.6.0",
+    "pinkie-promise": "^2.0.0",
     "stream-recorder": "^0.3.3",
     "vinyl": "^1.1.1",
     "xo": "^0.12.1"
